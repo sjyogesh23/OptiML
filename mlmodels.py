@@ -12,7 +12,7 @@ from preprocessingdata import preprocessingdata
 def trainmodels(df, target_type, target):
     if target_type == "Numeric":
         with st.spinner("Initializing regression setup..."):
-            regression_setup(df, target=target, session_id=1, fold=3, fold_shuffle=True)
+            regression_setup(df, target=target, session_id=1, fold_shuffle=True)
             setup_df = regression_pull()
             st.write("✅ Regression setup is ready")
             st.dataframe(setup_df)
@@ -23,7 +23,7 @@ def trainmodels(df, target_type, target):
             st.write("✅ Best Regression Model")
     else:
         with st.spinner("Initializing classification setup..."):
-            classification_setup(df, target=target, session_id=2, fold=3, fold_shuffle=True)
+            classification_setup(df, target=target, session_id=2, fold_shuffle=True)
             setup_df = classification_pull()
             st.write("✅ Classification setup is ready")
             st.dataframe(setup_df)
