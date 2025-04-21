@@ -11,7 +11,7 @@ from preprocessingdata import preprocessingdata
 
 def trainmodels(df, target_type, target):
     if target_type == "Numeric":
-        regression_setup(df, target=target, session_id=1, fold=3)
+        regression_setup(df, target=target, session_id=1, fold=3, fold_shuffle=True)
         setup_df = regression_pull()
         st.write("✅ Regression setup is ready")
         st.dataframe(setup_df)
@@ -21,7 +21,7 @@ def trainmodels(df, target_type, target):
             compare_df = regression_pull()
             st.write("✅ Best Regression Model")
     else:
-        classification_setup(df, target=target, session_id=2, fold=3)
+        classification_setup(df, target=target, session_id=2, fold=3, fold_shuffle=True)
         setup_df = classification_pull()
         st.write("✅ Classification setup is ready")
         st.dataframe(setup_df)
