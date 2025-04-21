@@ -13,9 +13,8 @@ from preprocessingdata import preprocessingdata
 def trainmodels(df, target_type, target):
     if target_type == "Numeric":
         start_time = time.time()
-        regression_setup(df, target=target, session_id=1, fold=2, 
-    fold_shuffle=True,
-    html=False, ignore_features=['SomeProblematicColumn'])
+        regression_setup(df, target=target, session_id=1, fold=2, fold_shuffle=True, html=False,
+                         ignore_features=[col for col in df.columns if col != target and df[col].isnull().all()],)
         st.write("✅ Setup completed in", round(time.time() - start_time, 2), "seconds")
         
         with st.spinner("Initializing regression setup pull..."):
