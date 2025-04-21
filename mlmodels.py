@@ -14,7 +14,7 @@ def trainmodels(df, target_type, target):
     if target_type == "Numeric":
         with st.spinner("Initializing regression setup..."):
             start_time = time.time()
-            regression_setup(df, target=target, session_id=1, fold=2, fold_shuffle=True, silent=True)
+            regression_setup(df, target=target, session_id=1, fold=2, fold_shuffle=True)
             st.write("✅ Setup completed in", round(time.time() - start_time, 2), "seconds")
         
         with st.spinner("Initializing regression setup pull..."):
