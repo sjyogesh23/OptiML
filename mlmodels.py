@@ -12,7 +12,7 @@ from preprocessingdata import preprocessingdata
 def trainmodels(df, target_type, target):
     if target_type == "Numeric":
         with st.spinner("Initializing regression setup..."):
-            regression_setup(df, target=target, session_id=1, fold=2, fold_shuffle=True, silent=True)
+            regression_setup(df, target=target, session_id=1, fold=2, fold_shuffle=True)
         
         with st.spinner("Initializing regression setup pull..."):
             setup_df = regression_pull()
