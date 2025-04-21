@@ -30,7 +30,7 @@ def trainmodels(df, target_type, target):
             st.write("✅ Best Regression Model")
     else:
         with st.spinner("Initializing classification setup..."):
-            classification_setup(df, target=target, session_id=2, fold_shuffle=True)
+            classification_setup(df, target=target)
             setup_df = classification_pull()
             st.write("✅ Classification setup is ready")
             st.dataframe(setup_df)
