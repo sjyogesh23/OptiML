@@ -14,7 +14,7 @@ def trainmodels(df, target_type, target):
     if target_type == "Numeric":
         with st.spinner("Initializing regression setup..."):
             start_time = time.time()
-            regression_setup(df, target=target)
+            regression_setup(df, target=target, session_id=None)
             st.write("✅ Setup completed in", round(time.time() - start_time, 2), "seconds")
         
         with st.spinner("Initializing regression setup pull..."):
@@ -30,7 +30,7 @@ def trainmodels(df, target_type, target):
             st.write("✅ Best Regression Model")
     else:
         with st.spinner("Initializing classification setup..."):
-            classification_setup(df, target=target)
+            classification_setup(df, target=target, session_id=1, fold_shuffle=True)
             setup_df = classification_pull()
             st.write("✅ Classification setup is ready")
             st.dataframe(setup_df)
