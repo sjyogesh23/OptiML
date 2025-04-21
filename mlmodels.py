@@ -89,8 +89,14 @@ def mlmodels(df):
         
         st.write("Dataframe after preprocessing and encoding:")
         st.dataframe(df)
-
-        best_model = trainmodels(df, target_type, target)
+        st.write("Shape after preprocessing:", df.shape)
+        try:
+            best_model = trainmodels(df, target_type, target)
+            if best_model is None:
+                return
+        except Exception as e:
+            st.error(f"❌ An unexpected error occurred during model training: {e}")
+            return
 
         os.makedirs("artifacts", exist_ok=True)
         with open("artifacts/model_inputs.json", "w") as f:
