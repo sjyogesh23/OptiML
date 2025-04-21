@@ -13,9 +13,7 @@ from preprocessingdata import preprocessingdata
 def trainmodels(df, target_type, target):
     if target_type == "Numeric":
         start_time = time.time()
-        regression_setup(df, target=target, session_id=1, fold=3, 
-    fold_shuffle=True,
-    html=False,ignore_features=['SomeProblematicColumn'])
+        regression_setup(df, target=target, session_id=1)
         st.write("✅ Setup completed in", round(time.time() - start_time, 2), "seconds")
         
         with st.spinner("Initializing regression setup pull..."):
@@ -95,6 +93,7 @@ def mlmodels(df):
 
     if st.button("Train Model"):
         df, label_encoders = preprocessingdata(df)
+        df = df.loc[:, df.nunique() > 1]
         st.session_state.df = df
         
         st.write("Dataframe after preprocessing and encoding:")
