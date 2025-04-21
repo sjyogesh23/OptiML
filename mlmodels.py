@@ -3,6 +3,7 @@ import json
 import pickle
 import zipfile
 import os
+import time
 from pycaret.regression import setup as regression_setup, compare_models as regression_compare, pull as regression_pull
 from pycaret.classification import setup as classification_setup, compare_models as classification_compare, pull as classification_pull
 from sklearn.preprocessing import LabelEncoder
@@ -12,12 +13,16 @@ from preprocessingdata import preprocessingdata
 def trainmodels(df, target_type, target):
     if target_type == "Numeric":
         with st.spinner("Initializing regression setup..."):
-            regression_setup(df, target=target, session_id=1, fold=2, fold_shuffle=True)
+            start_time = time.time()
+            regression_setup(df, target=target, session_id=1, fold=2, fold_shuffle=True, silent=True)
+            st.write("✅ Setup completed in", round(time.time() - start_time, 2), "seconds")
         
         with st.spinner("Initializing regression setup pull..."):
+            start_time = time.time()
             setup_df = regression_pull()
             st.write("✅ Regression setup is ready")
             st.dataframe(setup_df)
+            st.write("✅ Model completed in", round(time.time() - start_time, 2), "seconds")
 
         with st.spinner("Training regression models..."):
             best_model = regression_compare()
